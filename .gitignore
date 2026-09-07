@@ -1,0 +1,99 @@
+# ============================
+#  PYTHON
+# ============================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+*.log
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.dll
+*.dylib
+
+# ============================
+#  POETRY
+# ============================
+poetry.lock
+# (optionnel : si tu veux le versionner, retire cette ligne)
+
+# ============================
+#  BUILD / DISTRIBUTION
+# ============================
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# ============================
+#  PYQT6 / UI / QT
+# ============================
+*.ui
+*.qrc
+*.qmlc
+*.jsc
+*.qss~
+*.qss.orig
+
+# ============================
+#  TESTS
+# ============================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ============================
+#  LINT / TYPE CHECK
+# ============================
+.mypy_cache/
+ruff_cache/
+
+# ============================
+#  IDE / EDITORS
+# ============================
+.vscode/
+.idea/
+*.iml
+*.code-workspace
+
+# ============================
+#  OS FILES
+# ============================
+.DS_Store
+Thumbs.db
+
+# ============================
+#  LOGS
+# ============================
+logs/
+*.log
+
+# ============================
+#  TEMP / MISC
+# ============================
+*.tmp
+*.temp
+*.bak
+*.old
+
+# ============================
+#  PROJECT SPECIFIC
+# ============================
+# Fichiers d'essai à ne pas pousser
+essai.pdf
+essai.xlsx
+
+# ============================
+#  GITHUB ACTIONS
+# ============================
+# (rien à ignorer ici, les workflows doivent être versionnés)
+

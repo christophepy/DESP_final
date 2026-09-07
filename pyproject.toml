@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "desp"
+version = "1.0.0"
+description = "Classification DESP, graphique et rapport réglementaire (PyQt6)"
+authors = ["christopepy"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "desp" }]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Manufacturing",
+    "Topic :: Scientific/Engineering"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+PyQt6 = "^6.7"
+pandas = "^2.2"
+matplotlib = "^3.8"
+openpyxl = "^3.1"
+reportlab = "^4.0"
+
+[tool.poetry.scripts]
+desp = "desp.main:main"
+
+[tool.poetry.urls]
+homepage = "https://github.com/YannickDev/DESP_final"
+repository = "https://github.com/YannickDev/DESP_final"
+documentation = "https://github.com/YannickDev/DESP_final/tree/main/docs"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+

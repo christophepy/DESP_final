@@ -1,0 +1,36 @@
+site_name: DESP – Classification Directive 2014/68/UE
+site_description: Documentation officielle du projet DESP (classification réglementaire, interface PyQt6, moteur de calcul, export Excel/PDF)
+site_author: Yannick Wende
+repo_url: https://github.com/<ton-repo>/desp
+theme:
+  name: material
+  language: fr
+  palette:
+    primary: blue
+    accent: indigo
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+    - content.code.copy
+    - content.tabs.link
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - codehilite
+  - footnotes
+  - tables
+  - attr_list
+
+nav:
+  - Accueil: index.md
+  - Installation: installation.md
+  - Utilisation: utilisation.md
+  - Architecture: architecture.md
+  - Réglementation DESP: reglementation.md
+  - API Python: api.md
+  - Développement: developpement.md
+  - Changelog: changelog.md

@@ -1,0 +1,52 @@
+name: CI - DESP_final
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: latest
+
+    - name: Configure Poetry virtualenv
+      run: poetry config virtualenvs.create false
+
+    - name: Install dependencies
+      run: poetry install --no-interaction --no-root
+
+    - name: Install project
+      run: poetry install --no-interaction
+
+    - name: Lint (ruff)
+      run: poetry run ruff check .
+
+    - name: Type check (mypy)
+      run: poetry run mypy desp
+
+    - name: Run tests
+      run: poetry run pytest -q
+
+    - name: Build package
+      run: poetry build
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: desp-dist
+        path: dist/
