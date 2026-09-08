@@ -36,6 +36,7 @@ documentation = "https://github.com/YannickDev/DESP_final/tree/main/docs"
 ruff = "^0.6.0"
 mypy = "^1.10.0"
 pandas-stubs = "^3.0.5.260730"
+pytest = "^8.3.0"
 
 [tool.mypy]
 ignore_missing_imports = true
