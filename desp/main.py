@@ -1,15 +1,11 @@
 import sys
 import os
 import pandas as pd
-
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QTabWidget, QMessageBox
 )
-
-
+import ctypes
 import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
-
 
 # --- Modules métier ---
 from desp.desp_excel import charger_donnees
@@ -25,10 +21,10 @@ from desp.ui.onglet_classification import OngletClassification
 from desp.ui.onglet_graphique import OngletGraphique
 from desp.ui.onglet_resultats import OngletResultats
 
-# --- Win32 API pour maximisation native Windows ---
-import ctypes
-SW_MAXIMIZE = 3
+# --- Code exécuté (doit venir APRÈS les imports) ---
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+SW_MAXIMIZE = 3
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class FenetreDESP(QMainWindow):
