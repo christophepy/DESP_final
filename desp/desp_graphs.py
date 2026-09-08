@@ -3,7 +3,7 @@
 # Module de tracé des 9 graphes DESP (Annexe II 2014/68/UE)
 # ---------------------------------------------------------
 import matplotlib
-matplotlib.use("QtAgg")
+matplotlib.use("Agg") # backend compatible CI (pas de Qt)
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
