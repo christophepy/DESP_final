@@ -34,7 +34,7 @@ documentation = "https://github.com/YannickDev/DESP_final/tree/main/docs"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.6.0"
-
+mypy = "^1.10.0"
 
 [build-system]
 requires = ["poetry-core"]
