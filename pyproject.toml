@@ -32,6 +32,10 @@ homepage = "https://github.com/YannickDev/DESP_final"
 repository = "https://github.com/YannickDev/DESP_final"
 documentation = "https://github.com/YannickDev/DESP_final/tree/main/docs"
 
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.0"
+
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
