@@ -34,11 +34,13 @@ def determiner_categorie(
         if v is None:
             return "Erreur: volume V manquant pour tableau PS·V"
         prod = ps * v
+        assert v is not None  # mypy: v est maintenant un float
 
     elif tableau in [6, 7, 8, 9]:
         if dn is None:
             return "Erreur: DN manquant pour tableau PS·DN"
         prod = ps * dn
+        assert dn is not None  # mypy: dn est maintenant un float
 
     # ============================================================
     # TABLEAU 1 - Récipients de GAZ GROUPE 1
