@@ -7,12 +7,6 @@ from PyQt6.QtWidgets import (
 )
 
 
-# --- Win32 API pour maximisation native Windows ---
-import ctypes
-SW_MAXIMIZE = 3
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -31,6 +25,11 @@ from desp.ui.onglet_classification import OngletClassification
 from desp.ui.onglet_graphique import OngletGraphique
 from desp.ui.onglet_resultats import OngletResultats
 
+# --- Win32 API pour maximisation native Windows ---
+import ctypes
+SW_MAXIMIZE = 3
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class FenetreDESP(QMainWindow):
     """
