@@ -3,36 +3,8 @@
 # Détermination de la catégorie DESP (I, II, III, IV ou Règles de l'Art)
 # ----------------------------------------------------------------
 
-def determiner_categorie(
-    tableau: int,
-    ps: float,
-    v: float | None = None,
-    dn: float | None = None
-) -> str:
-    """
-    Détermine la catégorie DESP (I à IV, RÈGLES DE L'ART, ou non applicable)
-    """
-
-    # -------------------------------
-    # Validation du tableau
-    # -------------------------------
-    if tableau not in range(1, 10):
-        return "Erreur: tableau inconnu"
-
-    # -------------------------------
-    # Calcul du produit PS·V ou PS·DN
-    # -------------------------------
-    if tableau in [1, 2, 3, 4, 5]:
-        if v is None:
-            return "Erreur: volume V manquant pour tableau PS·V"
-        v = float(v)          # ← CORRECTION QUI SUPPRIME LES 23 ERREURS
-        prod = ps * v
-
-    elif tableau in [6, 7, 8, 9]:
-        if dn is None:
-            return "Erreur: DN manquant pour tableau PS·DN"
-        dn = float(dn)        # ← CORRECTION QUI SUPPRIME LES 23 ERREURS
-        prod = ps * dn
+def categorie_recipient(tableau: int, ps: float, v: float) -> str:
+    prod = ps * v
 
     # ============================================================
     # TABLEAU 1 - Récipients de GAZ GROUPE 1
@@ -147,6 +119,12 @@ def determiner_categorie(
         else:
             return "IV"
 
+    return "DESP non applicable"
+
+
+def categorie_tuyauterie(tableau: int, ps: float, dn: float) -> str:
+    prod = ps * dn
+
     # ============================================================
     # TABLEAU 6 - Tuyauteries de GAZ GROUPE 1
     # ============================================================
@@ -222,6 +200,21 @@ def determiner_categorie(
             return "II"
 
     return "DESP non applicable"
+
+
+def determiner_categorie(tableau: int, ps: float, v: float | None, dn: float | None) -> str:
+    if tableau in [1, 2, 3, 4, 5]:
+        if v is None:
+            return "Erreur: volume V manquant"
+        return categorie_recipient(tableau, ps, float(v))
+
+    if tableau in [6, 7, 8, 9]:
+        if dn is None:
+            return "Erreur: DN manquant"
+        return categorie_tuyauterie(tableau, ps, float(dn))
+
+    return "Erreur: tableau inconnu"
+
 
 
 
