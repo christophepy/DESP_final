@@ -3,23 +3,22 @@
 # Détermination de la catégorie DESP (I, II, III, IV ou Règles de l'Art)
 # ----------------------------------------------------------------
 
-def determiner_categorie(tableau: int, ps: float, v: float = None, dn: float = None) -> str:
+def determiner_categorie(
+    tableau: int,
+    ps: float,
+    v: float | None = None,
+    dn: float | None = None
+) -> str:
     """
     Détermine la catégorie DESP (I à IV, Règles de l'Art, ou non applicable)
     selon :
         - tableau DESP (1 à 9)
         - pression maximale admissible PS
-        - volume V (tableaux 1 à 5)
-        - diamètre nominal DN (tableaux 6 à 9)
-
-    Paramètres :
-        tableau : numéro du tableau DESP (1 à 9)
-        ps      : pression maximale admissible
-        v       : volume (si tableau 1 à 5)
-        dn      : diamètre nominal (si tableau 6 à 9)
+        - volume V (si tableau 1 à 5)
+        - diamètre nominal DN (si tableau 6 à 9)
 
     Retour :
-        str : catégorie DESP ("I", "II", "III", "IV", "Règles de l'Art", "DESP non applicable")
+        str : catégorie DESP ("I", "II", "III", "IV", "RÈGLES DE L'ART", "DESP non applicable")
     """
 
     # -------------------------------
@@ -227,4 +226,10 @@ def determiner_categorie(tableau: int, ps: float, v: float = None, dn: float = N
             return "I"
         else:
             return "II"
+
+    # -------------------------------
+    # Sécurité : cas non prévu
+    # -------------------------------
+    return "DESP non applicable"
+
 
