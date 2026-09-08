@@ -1,6 +1,3 @@
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
-
 import sys
 import os
 import pandas as pd
@@ -8,13 +5,17 @@ import pandas as pd
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QTabWidget, QMessageBox
 )
-from PyQt6.QtCore import Qt
+
 
 # --- Win32 API pour maximisation native Windows ---
 import ctypes
 SW_MAXIMIZE = 3
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 
 # --- Modules métier ---
 from desp.desp_excel import charger_donnees

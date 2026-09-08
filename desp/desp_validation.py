@@ -73,27 +73,33 @@ def valider_parametres(type_eq, fluide, etat, ps, v, dn):
 
     # Type d'équipement
     ok, err = valider_type_eq(type_eq)
-    if not ok: return ok, err
+    if not ok: 
+        return ok, err
 
     # Fluide
     ok, err = valider_fluide(fluide)
-    if not ok: return ok, err
+    if not ok: 
+        return ok, err
 
     # État
     ok, err = valider_etat(etat)
-    if not ok: return ok, err
+    if not ok: 
+        return ok, err
 
     # Pression PS
     ok, err = valider_ps(ps)
-    if not ok: return ok, err
+    if not ok: 
+        return ok, err
 
     # Volume ou DN selon type
     if type_eq in ["Récipients", "Générateurs"]:
         ok, err = valider_v(v)
-        if not ok: return ok, err
+        if not ok: 
+            return ok, err
 
     if type_eq == "Tuyauteries":
         ok, err = valider_dn(dn)
-        if not ok: return ok, err
+        if not ok: 
+            return ok, err
 
     return True, None
