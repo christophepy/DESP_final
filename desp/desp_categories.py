@@ -202,7 +202,7 @@ def categorie_tuyauterie(tableau: int, ps: float, dn: float) -> str:
     return "DESP non applicable"
 
 
-def determiner_categorie(tableau: int, ps: float, v: float | None, dn: float | None) -> str:
+def determiner_categorie(tableau: int, ps: float, v: float | None = None, dn: float | None = None):
     if tableau in [1, 2, 3, 4, 5]:
         if v is None:
             return "Erreur: volume V manquant"
