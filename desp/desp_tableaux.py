@@ -33,4 +33,4 @@ def determiner_tableau(type_eq: str, groupe: int, etat: str) -> int:
             return 8 if groupe == 1 else 9
 
     # Sécurité : cas non prévu
-    return None
+    return 0
