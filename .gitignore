@@ -22,7 +22,7 @@ env/
 # ============================
 #  POETRY
 # ============================
-poetry.lock
+#poetry.lock
 # (optionnel : si tu veux le versionner, retire cette ligne)
 
 # ============================
