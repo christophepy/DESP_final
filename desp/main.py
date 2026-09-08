@@ -27,6 +27,21 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 SW_MAXIMIZE = 3
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
+def maximize_console_window() -> None:
+    """
+    Maximisation de la fenêtre uniquement sous Windows.
+    Sous Linux (GitHub Actions), ctypes.windll n'existe pas.
+    """
+    if sys.platform.startswith("win"):
+        try:
+            ctypes.windll.user32.ShowWindow(
+                ctypes.windll.kernel32.GetConsoleWindow(), SW_MAXIMIZE
+            )
+        except Exception:
+            pass
+
+
 class FenetreDESP(QMainWindow):
     """
     Fenêtre principale DESP (MVC)
@@ -36,15 +51,12 @@ class FenetreDESP(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("DESP – Classification")
-
-        # Taille minimale pour éviter les réductions Windows
         self.setMinimumSize(1200, 800)
 
         # Chargement Excel
         try:
             self.df_desp = charger_donnees()
-            print("Colonnes chargées :", self.df_desp.columns) #┌ a supprimer
-
+            print("Colonnes chargées :", self.df_desp.columns)  # ┌ à supprimer si besoin
         except Exception as e:
             QMessageBox.critical(self, "Erreur Excel", str(e))
             self.df_desp = pd.DataFrame()
@@ -54,25 +66,25 @@ class FenetreDESP(QMainWindow):
         # --- Layout principal ---
         central = QWidget()
         layout = QVBoxLayout()
-
         layout.setContentsMargins(20, 20, 20, 20)
         layout.setSpacing(15)
 
         self.tabs = QTabWidget()
 
-        # --- Style des onglets (taille police, gras, majuscules) ---
+        # --- Style des onglets ---
         self.tabs.setStyleSheet("""
             QTabBar::tab {
                 font-weight: bold;
                 text-transform: uppercase;
                 padding: 8px 20px;
-                font-size: 15px;   /* ← taille de police */
+                font-size: 15px;
                 }
             QTabBar::tab:selected {
-                font-size: 17px;   /* ← onglet actif légèrement plus grand */
+                font-size: 17px;
                 color: #0055aa;
             }
         """)
+
         # --- Instanciation des onglets ---
         self.onglet_classif = OngletClassification(self.df_desp, self.on_valider)
         self.onglet_graph = OngletGraphique()
@@ -84,10 +96,8 @@ class FenetreDESP(QMainWindow):
         self.tabs.addTab(self.onglet_res, "Résultats / Rapport")
 
         layout.addWidget(self.tabs)
-
         central.setLayout(layout)
         self.setCentralWidget(central)
-
 
     # ----------------------------------------------------------------------
     def on_valider(self, type_eq, fluide, etat, ps, v, dn):
@@ -131,9 +141,6 @@ class FenetreDESP(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Erreur interne", repr(e))
 
-
-
-
     # ----------------------------------------------------------------------
     def on_implications(self):
         if not self.resultats:
@@ -169,9 +176,8 @@ if __name__ == "__main__":
     fen = FenetreDESP()
     fen.show()
 
-    # --- Maximisation native Windows (fiable à 100 %) ---
-    hwnd = fen.winId().__int__()
-    ctypes.windll.user32.ShowWindow(hwnd, SW_MAXIMIZE)
+    # --- Maximisation native Windows ---
+    maximize_console_window()
 
     sys.exit(app.exec())
 
