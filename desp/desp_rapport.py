@@ -131,7 +131,7 @@ def resume_categorie(categorie: str) -> dict:
     cat = str(categorie).strip().upper()
 
     # Normalisation stricte : uniquement les deux formes possibles
-    if cat == "RÈGLES DE L'ART" or cat == "REGLES DE L'ART":
+    if cat == "RÈGLES DE L'ART":
         cat = "RÈGLES DE L'ART"
 
     if cat == "DESP NON APPLICABLE":
